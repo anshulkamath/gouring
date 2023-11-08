@@ -1,4 +1,4 @@
-module github.com/ii64/gouring
+module github.com/anshulkamath/gouring
 
 go 1.18
 

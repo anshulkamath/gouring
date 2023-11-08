@@ -9,7 +9,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/ii64/gouring"
+	"github.com/anshulkamath/gouring"
 )
 
 var fs = flag.NewFlagSet("perf", flag.ExitOnError)

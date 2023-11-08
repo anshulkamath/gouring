@@ -5,7 +5,7 @@
 
 
 ```bash
-go get github.com/ii64/gouring
+go get github.com/anshulkamath/gouring
 ```
 ## Example
 

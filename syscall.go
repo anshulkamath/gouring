@@ -5,6 +5,14 @@ import (
 	"unsafe"
 )
 
+const (
+	// uring syscall no.
+
+	SYS_IO_URING_SETUP    = 425
+	SYS_IO_URING_ENTER    = 426
+	SYS_IO_URING_REGISTER = 427
+)
+
 func io_uring_setup(entries uintptr, params *IoUringParams) (ret int, err error) {
 	r1, _, e1 := syscall.Syscall(SYS_IO_URING_SETUP, entries, uintptr(unsafe.Pointer(params)), 0)
 	ret = int(r1)

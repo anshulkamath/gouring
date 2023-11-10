@@ -31,6 +31,10 @@ func (h *IoUring) GetSqe() *IoUringSqe {
 	return h.io_uring_get_sqe()
 }
 
+func (h *IoUring) PeekCqe(cqePtr **IoUringCqe) error {
+	return h.io_uring_peek_cqe(cqePtr)
+}
+
 func (h *IoUring) WaitCqe(cqePtr **IoUringCqe) error {
 	return h.io_uring_wait_cqe(cqePtr)
 }

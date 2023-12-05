@@ -72,7 +72,7 @@ func io_uring_mmap(fd int, p *IoUringParams, sq *IoUringSq, cq *IoUringCq) (err 
 	// alloc sq ring
 	sq.RingPtr, err = mmap(nil, uintptr(sq.RingSz),
 		syscall.PROT_READ|syscall.PROT_WRITE,
-		syscall.MAP_SHARED|syscall.MAP_POPULATE,
+		MmapFlags,
 		fd, IORING_OFF_SQ_RING)
 	if err != nil {
 		return
@@ -84,7 +84,7 @@ func io_uring_mmap(fd int, p *IoUringParams, sq *IoUringSq, cq *IoUringCq) (err 
 		// alloc cq ring
 		cq.RingPtr, err = mmap(nil, uintptr(cq.RingSz),
 			syscall.PROT_READ|syscall.PROT_WRITE,
-			syscall.MAP_SHARED|syscall.MAP_POPULATE,
+			MmapFlags,
 			fd, IORING_OFF_CQ_RING)
 		if err != nil {
 			// goto errLabel
@@ -109,7 +109,7 @@ func io_uring_mmap(fd int, p *IoUringParams, sq *IoUringSq, cq *IoUringCq) (err 
 	var sqeAddr unsafe.Pointer
 	sqeAddr, err = mmap(nil, size*uintptr(p.SqEntries),
 		syscall.PROT_READ|syscall.PROT_WRITE,
-		syscall.MAP_SHARED|syscall.MAP_POPULATE,
+		MmapFlags,
 		fd, IORING_OFF_SQES)
 	if err != nil {
 		//errLabel:
